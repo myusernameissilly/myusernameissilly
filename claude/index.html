@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Quest - Gamified Study Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+        <div class="start-container">
+            <h1 class="logo">SAT <span class="highlight">Quest</span></h1>
+            <p class="tagline">Level up your SAT score</p>
+            <div class="stats-preview" id="stats-preview"></div>
+            <div class="mode-select">
+                <h2>Choose Your Challenge</h2>
+                <button class="mode-btn" data-mode="math" onclick="startGame('math')">
+                    <span class="mode-icon">&#x1D465;</span>
+                    <span class="mode-label">Math</span>
+                    <span class="mode-desc">Algebra, geometry, data analysis</span>
+                </button>
+                <button class="mode-btn" data-mode="reading" onclick="startGame('reading')">
+                    <span class="mode-icon">A</span>
+                    <span class="mode-label">Reading &amp; Writing</span>
+                    <span class="mode-desc">Grammar, vocabulary, comprehension</span>
+                </button>
+                <button class="mode-btn" data-mode="mixed" onclick="startGame('mixed')">
+                    <span class="mode-icon">&#9733;</span>
+                    <span class="mode-label">Mixed Challenge</span>
+                    <span class="mode-desc">Random questions from all sections</span>
+                </button>
+                <button class="mode-btn boss" data-mode="boss" onclick="startGame('boss')">
+                    <span class="mode-icon">&#9876;</span>
+                    <span class="mode-label">Boss Round</span>
+                    <span class="mode-desc">10 hard questions, 90 seconds each</span>
+                </button>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-hud">
+            <div class="hud-left">
+                <div class="level-badge" id="level-badge">Lv <span id="hud-level">1</span></div>
+                <div class="xp-bar-container">
+                    <div class="xp-bar" id="xp-bar"></div>
+                    <span class="xp-text" id="xp-text">0 / 100 XP</span>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="streak-display" id="streak-display">
+                    <span class="streak-flame" id="streak-flame">&#128293;</span>
+                    <span id="streak-count">0</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="timer-ring" id="timer-ring">
+                    <svg viewBox="0 0 36 36">
+                        <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="timer-fg" id="timer-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                    <span class="timer-text" id="timer-text">30</span>
+                </div>
+                <div class="score-display">
+                    <span id="score">0</span> pts
+                </div>
+            </div>
+        </div>
+ 
+        <div class="question-progress">
+            <span id="q-current">1</span> / <span id="q-total">10</span>
+            <div class="progress-dots" id="progress-dots"></div>
+        </div>
+ 
+        <div class="question-card" id="question-card">
+            <div class="difficulty-tag" id="difficulty-tag">Medium</div>
+            <div class="question-category" id="question-category">Algebra</div>
+            <div class="question-passage" id="question-passage"></div>
+            <div class="question-text" id="question-text"></div>
+            <div class="answers" id="answers"></div>
+        </div>
+ 
+        <div class="combo-popup" id="combo-popup"></div>
+        <div class="points-popup" id="points-popup"></div>
+    </div>
+ 
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="results-container">
+            <h2 id="results-title">Round Complete!</h2>
+            <div class="results-grade" id="results-grade"></div>
+            <div class="results-stats">
+                <div class="result-stat">
+                    <span class="stat-value" id="res-score">0</span>
+                    <span class="stat-label">Points Earned</span>
+                </div>
+                <div class="result-stat">
+                    <span class="stat-value" id="res-correct">0</span>
+                    <span class="stat-label">Correct</span>
+                </div>
+                <div class="result-stat">
+                    <span class="stat-value" id="res-accuracy">0%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+                <div class="result-stat">
+                    <span class="stat-value" id="res-streak">0</span>
+                    <span class="stat-label">Best Streak</span>
+                </div>
+            </div>
+            <div class="xp-gain" id="xp-gain"></div>
+            <div class="results-review" id="results-review"></div>
+            <div class="results-actions">
+                <button class="btn-primary" onclick="showStart()">Back to Menu</button>
+                <button class="btn-secondary" onclick="startGame(lastMode)">Play Again</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
